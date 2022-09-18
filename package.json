@@ -9,6 +9,7 @@
     "start": "node index.js"
   },
   "author": "iigmir",
+  "license": "UNLICENSED",
   "private": "true",
   "dependencies": {
     "axios": "^0.27.2",
