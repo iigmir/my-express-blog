@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocas/4.0.4/tocas.min.css" />
+    <title>Blog: Categories</title>
+</head>
+<body>
+    <main id="app" class="ts-container">
+        <h1 class="ts-header is-heavy is-massive">Categories</h1>
+        <p v-if="categories.length > 0">
+            <a v-for="({ id, tag_name }) in categories" v-bind:key="id" v-on:click="set_model" href="javascript:;">
+                <span v-bind:data-tag-id="id" class="ts-badge is-spaced">
+                    {{ tag_name }}
+                </span>
+            </a>
+        </p>
+        <article-modal v-bind="{ articles, tagId, tagName }" v-on:close="close_modal" />
+    </main>
+    <template id="article-modal">
+        <div v-bind:class="modal_class" v-on:click.self="$emit('close')">
+            <div class="content">
+                <div class="ts-content is-dense">
+                    <div class="ts-row">
+                        <div class="column is-fluid">
+                            <div class="ts-header">{{ tagName }}</div>
+                        </div>
+                        <div class="column">
+                            <button class="ts-close" v-on:click="$emit('close')"></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="ts-divider"></div>
+                <div class="ts-content" style="max-height: 360px; overflow-y: auto;">
+                    <ul>
+                        <article-link v-for="its in current_articles" v-bind:key="its.id" v-bind="its" />
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </template>
+    <template id="article-link">
+        <li>
+            <a v-bind="{ href, lang: language }">{{ title }}</a>
+        </li>
+    </template>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="/assets/categories.js" type="module"></script>
+</body>
+</html>

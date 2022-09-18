@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="<%= metainfo.language %>" data-scheme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocas/4.0.4/tocas.min.css" />
+    <link href="https://unpkg.com/prismjs@v1.x/themes/prism.css" rel="stylesheet" />
+    <style>
+    .top-gap { margin-top: 1rem; }
+    </style>
+    <title>Blog: <%= metainfo.title %></title>
+</head>
+<body>
+    <div class="ts-container top-gap">
+        <div id="categories-panel" class="categories" data-category-id="<%- metainfo.category_id %>"></div>
+    </div>
+    <main class="ts-container top-gap">
+        <%- content %>
+    </main>
+    <div class="ts-container">
+        <div class="ts-divider is-section"></div>
+    </div>
+    <footer class="ts-container">
+        <p>
+            <small>
+                By <a href="https://github.com/iigmir" target="_blank" referrerpolicy="no-referrer">iigmir</a>.
+                Created at: <time datetime="<%= metainfo.created_at %>"><%= metainfo.created_at %></time>;
+                Changed at: <time datetime="<%= metainfo.updated_at %>"><%= metainfo.updated_at %></time>
+            </small>
+        </p>
+    </footer>
+    <script src="https://unpkg.com/prismjs@v1.x/components/prism-core.min.js"></script>
+	<script src="https://unpkg.com/prismjs@v1.x/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="/assets/article.js"></script>
+</body>
+</html>
